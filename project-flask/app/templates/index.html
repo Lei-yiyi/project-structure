@@ -1,0 +1,66 @@
+{#首页模板#}
+
+{#1. 引入相关的库#}
+
+<html>
+<head>
+  <meta charset='utf-8'>
+  <script src="https://lib.baomitu.com/jquery/2.2.4/jquery.min.js"></script>  {#引入 JQuery 库#}
+  <link href="https://lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  {#引入 font-awesome 库#}
+  <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">  {#引入网站的样式文件 static/style.css#}
+  <script src="{{url_for('static', filename='script.js')}}"></script>  {#引入 JS 文件 static/script.js#}
+  <title>每日清单</title>
+</head>
+
+{#2. 显示 “登录/注册” 按钮#}
+
+<body>
+  <div class='header'>
+    <i class="fa fa-calendar-plus-o"></i> 待做清单
+
+    {% if hasLogin %}  {#如果用户已经登录，网站首页的显示 “退出” 按钮#}
+    <span class='login'>
+      <i class="fa fa-sign-out"></i>
+      <a href='/users/logout'>退出</a>
+    </span>
+    {% else %}  {#如果用户没有登录，网站首页的显示 “登录/注册” 按钮#}
+    <span class='login'>
+      <i class="fa fa-sign-in"></i>
+      <a href='/users/login'>登录</a>
+
+      <i class="fa fa-user-plus"></i>
+      <a href='/users/register'>注册</a>
+    </span>
+    {% endif %}
+  </div>
+
+{#3. 输入待做事项的文本框#}
+
+  {% if hasLogin %}  {#如果 hasLogin 为真，用户已经登录，显示一个文本框，用于输入待做事项#}
+  <div>
+    <input type="text" class="row" placeholder="输入待办事项">
+    <i class="fa fa-fw fa-plus-square" onclick='onAddTodo(this);'></i>  {#显示了一个 font awsome 图标 plus-square，点击该图标，调用函数 onAddTodo(this) 向后端请求新增一个待做事项#}
+  </div>
+  {% endif %}
+
+{#4. 待做清单和完成清单#}
+
+  {% for todo in todos %}  {#遍历 todos，展示所有的待做事项#}
+  <div>
+    <input type="text" class="row" value="{{todo.title}}">
+    <i class="fa fa-fw fa-check" onclick='onUpdateTodo({{todo.todoId}});'></i>  {#显示了一个 font awsome 图标 check，点击该图标表示已经完成该项，将待做事项移入到完成清单中，调用函数 onUpdateTodo(todo.todoId) 向后端请求更新待做事项的 status 为 ‘done’#}
+  </div>
+  {% endfor %}
+
+  <div class='header'>
+    <i class="fa fa-calendar-check-o"></i> 完成清单
+  </div>
+
+  {% for done in dones %}  {#遍历 dones，展示所有的完成事项#}
+  <div>
+    <input type="text" class="row" value="{{done.title}}">
+    <i class="fa fa-fw fa-trash" onclick='onDeleteTodo({{done.todoId}});'></i>  {#显示了一个 font awsome 图标 delete，点击该图标，调用函数 onDeleteTodo(todo.todoId) 向后端请求删除待做事项#}
+  </div>
+  {% endfor %}
+</body>
+</html>
