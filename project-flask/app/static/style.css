@@ -1,0 +1,39 @@
+/*样式文件*/
+
+/*对标签 body 设置*/
+body {
+    width: 400px;
+    margin: auto;  /*auto 表示将内容居中显示，两侧的 margin 相等，根据内容的宽度和屏幕的宽度自动计算 margin 的大小*/
+}
+
+/*对标签 a 设置，不显示下划线*/
+a {
+    text-decoration: none;
+}
+
+/*对 class 等于 fa 的元素设置，显示光标的形状为手形*/
+.fa {
+    cursor: pointer;
+}
+
+/*登录、注册、退出的按钮的 class 等于 login，显示的 font-size 为 80%，略小于正常的尺寸*/
+.login {
+    font-size: 80%;
+    font-weight: normal;
+}
+
+.header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+/*待做事项和完成事项的 class 等于 row，设置上下的 padding 和 margin，让它们互相之间存在一个间隔*/
+.row {
+    width: 360px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
