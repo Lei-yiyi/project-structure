@@ -9,7 +9,6 @@
     │   │   └── views.py            # 视图文件
     │   ├── app2
     │   │   ├── __init__.py
-    │   │   ├── forms.py            # 表单文件
     │   │   ├── templates           # 模板文件
     │   │   │   └── *.html
     │   │   └── views.py 
@@ -22,7 +21,7 @@
     │   │   ├── templates
     │   │   │   └── *.html
     │   │   └── views.py
-    │   ├── __init__.py
+    │   ├── __init__.py             # Flask 实例
     │   └── extensions.py           # 各种扩展
     ├── migrations/       # 数据迁移文件夹
     ├── venv/             # 虚拟环境
@@ -41,10 +40,7 @@
     两种组织方式的优劣并无定论。上文中是按照 分区 进行组织的。下文中是按照 功能结构 进行组织的。
 
 
-    ├── app  -- 项目的主要功能实现  
-    │   ├── forms               # 表单文件
-    │   │   ├── __init__.py
-    │   │   └── *.py
+    ├── app                     # 项目的主要功能实现  
     │   ├── models              # 数据库模型文件
     │   │   ├── __init__.py
     │   │   └── *.py
@@ -56,5 +52,5 @@
     │   ├── views               # 视图文件
     │   │   ├── __init__.py
     │   │   └── *.py
-    │   ├── __init__.py 
+    │   ├── __init__.py         # Flask 实例 
     └── └── extensions.py       # 各种扩展
